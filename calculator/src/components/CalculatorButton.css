@@ -1,0 +1,22 @@
+.calculator-button {
+	background-color: #f0f0f0;
+	border: 1px solid #d9d9d9;
+	border-radius: 5px;
+	color: #333;
+	cursor: pointer;
+	font-size: 1.5em;
+	margin: 5px;
+	padding: 10px;
+	width: 50px;
+
+	&:hover {
+		background-color: #e0e0e0;
+		box-shadow: 0 0 5px 0 #d9d9d9;
+		border: 1px solid #d9d9d9;
+	}
+
+	&.colored {
+		background-color: #f5913e;
+		color: white;
+	}
+}
