@@ -1,45 +1,42 @@
 import { useState } from 'react'
-import styles from './App.module.css'
+import './App.css'
 import AddTaskDialog from './components/AddTaskDialog';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import TaskList from './components/TaskList';
+import { getInitialTasks, saveTasks } from './utils/localStorage';
 
 function App() {
-  const [tasks, setTasks] = useState([{ id: 1, name: 'Task 1' }, { id: 2, name: 'Task 2' }])
+  const [tasks, setTasks] = useState(getInitialTasks)
   const [dialogOpen, setDialogOpen] = useState(false);
-
-  const removeTask = (id) => {
-    setTasks((currentTask) => {
-      return currentTask.filter((task) => id !== task.id);
-    });
-  };
 
   const updateTasks = (name) => {
     setTasks((currentTasks) => {
-      const newTasklist = [...currentTasks];
-      newTasklist.push({
-        id: Math.floor(Math.random() * 10_000),
-        name: name,
-      });
-
       setDialogOpen(false);
-      return newTasklist;
+      const newTasks = [
+        ...currentTasks,
+        {
+          id: Math.floor(Math.random() * 10_000),
+          name: name,
+        },
+      ];
+      saveTasks(newTasks);
+
+      return newTasks;
     });
   };
 
   return (
     <>
-      <h1>Task Mate</h1>
-      <div className={styles['grid-container']}>
-        <button onClick={() => setDialogOpen(true)}>Add New Task</button>
-      </div>
-      <ul className={styles['task-list']}>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            {task.name}
-            <button onClick={() => removeTask(task.id)} >Delete</button>
-          </li>
-        ))}
-      </ul>
-      <AddTaskDialog openDialog={dialogOpen} updateTasks={updateTasks} />
+      <Header />
+      <main>
+        <div className='control-bar'>
+          <button className='add-task-button' onClick={() => setDialogOpen(true)}>Add New Task</button>
+        </div>
+        <TaskList tasks={tasks} setTasks={setTasks} />
+        <AddTaskDialog openDialog={dialogOpen} updateTasks={updateTasks} />
+      </main>
+      <Footer/>
     </>
   )
 }

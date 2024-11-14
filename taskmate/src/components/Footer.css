@@ -1,0 +1,19 @@
+footer {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	justify-content: space-between;
+	align-items: center;
+	width: calc(100% - 2rem);
+	padding: 0.2rem 1rem;
+	border-top: var(--border-regular);
+	background-color: var(--bg-color-300);
+
+	& :first-child {
+		text-align: left;
+	}
+
+	img {
+		height: 64px;
+		object-fit: contain;
+	}
+}

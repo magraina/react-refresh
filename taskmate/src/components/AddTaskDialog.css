@@ -1,0 +1,27 @@
+dialog {
+	border: var(--border-regular);
+	border-radius: 1rem;
+	box-shadow: var(--box-shadow-regular);
+	padding: 1rem;
+}
+.dialog-container {
+	margin-top: 1rem;
+
+	input {
+		width: 300px;
+		padding: 0.5rem;
+		border: var(--border-regular);
+		border-radius: 0.25rem;
+		margin-bottom: 1rem;
+	}
+
+	button {
+		margin-left: 1rem;
+		background-color: var(--success-color);
+		color: #fff;
+
+		&:hover {
+			background-color: var(--success-color-hover);
+		}
+	}
+}

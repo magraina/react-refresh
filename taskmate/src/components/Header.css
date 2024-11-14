@@ -1,0 +1,19 @@
+header {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	justify-content: space-between;
+	align-items: center;
+	width: calc(100% - 2rem);
+	padding: 0.2rem 1rem;
+	border-bottom: var(--border-regular);
+	box-shadow: var(--box-shadow-regular);
+
+	& :first-child {
+		text-align: left;
+	}
+
+	img {
+		height: 64px;
+		object-fit: contain;
+	}
+}
