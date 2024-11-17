@@ -1,5 +1,5 @@
 import logo from '../assets/logo.png';
-import { NavLink, useSearchParams } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { useState } from 'react';
 
@@ -14,11 +14,11 @@ const navLinkClassNameConstructor = ({ isActive, isPending, isTransitioning }) =
 
 const Header = ({toggleTheme}) => {
 	const [search, setSearch] = useState('');
+	const navigate = useNavigate();
 
-	const [, setSearchParams] = useSearchParams();
 	const searchOnPage = (event) => {
 		if(event.key !== 'Enter') return;
-		setSearchParams(`search=${search}`);
+		navigate('/search?q=' + search);
 	};
 
 	return (
@@ -29,9 +29,9 @@ const Header = ({toggleTheme}) => {
 			</div>
 			<nav className='flex gap-5'>
 				<NavLink className={navLinkClassNameConstructor} to="/">Home</NavLink>
-				<NavLink className={navLinkClassNameConstructor} to="/popular">Popular</NavLink>
-				<NavLink className={navLinkClassNameConstructor} to="/top-rated">Top rated</NavLink>
-				<NavLink className={navLinkClassNameConstructor} to="/upcoming">Upcoming</NavLink>
+				<NavLink className={navLinkClassNameConstructor} to="/category/popular">Popular</NavLink>
+				<NavLink className={navLinkClassNameConstructor} to="/category/top-rated">Top rated</NavLink>
+				<NavLink className={navLinkClassNameConstructor} to="/category/upcoming">Upcoming</NavLink>
 			</nav>
 			<div className='flex gap-2'>
 				<button onClick={toggleTheme} className='text-gray-900 dark:text-gray-50'>Theme</button>
