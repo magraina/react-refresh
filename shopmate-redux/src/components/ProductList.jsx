@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import './ProductList.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCart, addToCart, removeFromCart } from '../slice/CartSlice';
+import { getCart, addToCart, removeFromCart } from '../slice/CartSlice';
 
 const productList = [
 	{ id: 10002, name: 'Django Framework for Beginners', price: 29, in_stock: true },
@@ -14,7 +14,8 @@ const productList = [
 
 export const ProductList = () => {
 	const [products] = useState(productList);
-	const cart = useSelector(selectCart);
+	const cart = useSelector(getCart);
+
 	const dispatch = useDispatch();
 
 

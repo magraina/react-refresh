@@ -13,10 +13,17 @@ export const cartSlice = createSlice({
 		clearCart: () => {
 			return [];
 		},
+	},
+	selectors: {
+		getCart: (state) => state.cart,
+		getCartTotal: (state) => {
+			return state.cart.reduce((total, product) => total + product.price, 0);
+		},
 	}
 });
 
-export const selectCart = (state) => state.cart;
+export const { getCart, getCartTotal } = cartSlice.getSelectors();
 
-export const { addToCart, removeFromCart, clearCart, getCartTotal, isInCart } = cartSlice.actions;
+
+export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
